@@ -226,25 +226,25 @@
           <div class="col-md-12">
             <div class="home-slider major-caousel owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
               <div class="slider-item">
-                <a href="/meuHotel/imagens/slider-1.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="/meuHotel/imagens/slider-1.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="/meuHotel/imagens/slider-1.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="/meuHotel/imagens/slider-2.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-2.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="/meuHotel/imagens/slider-2.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="/meuHotel/imagens/slider-2.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="/meuHotel/imagens/slider-3.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-3.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="/meuHotel/imagens/slider-3.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="/meuHotel/imagens/slider-2.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="/meuHotel/imagens/slider-4.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-4.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="/meuHotel/imagens/slider-4.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="/meuHotel/imagens/slider-4.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="/meuHotel/imagens/slider-5.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-5.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="/meuHotel/imagens/slider-5.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="/meuHotel/imagens/slider-5.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="/meuHotel/imagens/slider-6.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-6.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="/meuHotel/imagens/slider-6.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="/meuHotel/imagens/slider-6.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
               <div class="slider-item">
-                <a href="/meuHotel/imagens/slider-7.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-7.jpg" alt="Image placeholder" class="img-fluid"></a>
+                <a href="/meuHotel/imagens/slider-7.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="/meuHotel/imagens/slider-7.jpg" alt="Image placeholder" class="img-fluid"></a>
               </div>
             </div>
             <!-- END slider -->
@@ -255,7 +255,7 @@
     </section>
     <!-- END section -->
     
-    <section class="section bg-image overlay" style="background-image: url('/meuHotel/imagens//hero_3.jpg');">
+    <section class="section bg-image overlay" style="background-image: url('/meuHotel/imagens/hero_3.jpg');">
       <div class="container">
         <div class="row justify-content-center text-center mb-5">
           <div class="col-md-7">
@@ -529,7 +529,7 @@
       </div>
     </section>
 
-    <section class="section bg-image overlay" style="background-image: url('/meuHotel/imagens//hero_4.jpg');">
+    <section class="section bg-image overlay" style="background-image: url('/meuHotel/imagens/hero_4.jpg');">
         <div class="container" >
           <div class="row align-items-center">
             <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
