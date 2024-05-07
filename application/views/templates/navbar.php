@@ -10,10 +10,6 @@
             <li>
               <form class="form-inline mr-auto">
                 <div class="search-element">
-                  <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="200">
-                  <button class="btn" type="submit">
-                    <i class="fas fa-search"></i>
-                  </button>
                 </div>
               </form>
             </li>
@@ -55,11 +51,11 @@
               <div class="dropdown-title">Olá,<?php echo $this->session->userdata('name'); ?>
               <br><small class="text-muted"><?php echo $this->session->userdata('profile'); ?></small></div>
               <a href="profile.html" class="dropdown-item has-icon"> <i class="far
-										fa-user"></i> Profile
-              </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
-                Activities
+										fa-user"></i> Perfil
+              </a> <a href="<?= base_url() ?>messages/load_page"" class="dropdown-item has-icon"> <i class="fas fa-envelope"></i>
+                Mensagem
               </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
-                Settings
+                Configuração
               </a>
               <div class="dropdown-divider"></div>
               <a href="<?= base_url() ?>login" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
@@ -72,7 +68,7 @@
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html"> <img alt="image" src="\finar\imagens\icone.png" class="header-logo" /> <span
+            <a href="#"> <img alt="image" src="\finar\imagens\icone.png" class="header-logo" /> <span
                 class="logo-name">FinAR</span>
             </a>
           </div>
@@ -127,11 +123,7 @@
 
             <li class="dropdown">
               <a href="<?= base_url() ?>empresa" class="nav-link"><i data-feather="hexagon"></i><span>Empresa</span></a>
-            </li>
-
-            <li class="dropdown">
-              <a href="<?= base_url() ?>mensagem" class="nav-link"><i data-feather="mail"></i><span>Mensagem</span></a>
-            </li>
+          </li>
             
           </ul>
         </aside>
