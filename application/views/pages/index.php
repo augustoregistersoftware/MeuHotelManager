@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>MEU HOTEL</title>
+        <title>Meu Hotel - Boituva</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="<?= base_url('application/css/main.css') ?>">
         <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
@@ -14,7 +14,7 @@
         <header class = "header" id = "header">
             <div class = "head-top">
                 <div class = "site-name">
-                    <span>GEEKPROBIN</span>
+                    <span>Pagina Do Visitante</span>
                 </div>
                 <div class = "site-nav">
                     <span id = "nav-btn">MENU <i class = "fas fa-bars"></i></span>
@@ -22,8 +22,8 @@
             </div>
 
             <div class = "head-bottom flex">
-                <h2>NICE AND COMFORTABLE PLACE TO STAY</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto est quos veniam impedit numquam itaque voluptatum, dicta asperiores accusamus, eligendi neque ut incidunt, modi harum molestiae atque natus officia minima.</p>
+                <h2>Meu Hotel Boituva</h2>
+                <p>O Meu Hotel agora é seu também! Localizado no KM 114 da Rodovia Castelo Branco, na cidade de Boituva-SP, o mais novo hotel da região chegou para oferecer aos hóspedes mais exigentes todo o conforto em um ambiente que mistura o moderno ao contemporâneo. Esperamos recebê-lo em breve aqui no Meu Hotel Boituva! </p>
                 <button type = "button" class = "head-btn">GET STARTED</button>
             </div>
         </header>
@@ -42,6 +42,7 @@
                 <li><a href = "#customers">customers</a></li>
             </ul>
             <button class = "btn log-in">log in</button>
+            <button class = "btn log-in">sig in</button>
         </div>
         <!-- end of side navbar -->
 
@@ -310,13 +311,13 @@
 
                 
                 <div>
-                    <h2>Have A Question</h2>
+                    <h2>Duvidas E Contato</h2>
                     <div class = "contact-item">
                         <span>
                             <i class = "fas fa-map-marker-alt"></i>
                         </span>
                         <span>
-                            203 Fake St.Mountain View, San Francisco, California, USA
+                        Avenida Antônio Angelo Amadio, 261 Centro Empresarial - Boituva - SP
                         </span>
                     </div>
                     <div class = "contact-item">
@@ -324,7 +325,7 @@
                             <i class = "fas fa-phone-alt"></i>
                         </span>
                         <span>
-                            +84545 37534 48
+                            +55 (15)3264-2100
                         </span>
                     </div>
                     <div class = "contact-item">
@@ -332,7 +333,7 @@
                             <i class = "fas fa-envelope"></i>
                         </span>
                         <span>
-                            info@domain.com
+                            reservas@meuhotelboituva.com.br
                         </span>
                     </div>
                 </div>
