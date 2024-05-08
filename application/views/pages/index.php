@@ -41,7 +41,9 @@
                 <li><a href = "#rooms">rooms</a></li>
                 <li><a href = "#customers">customers</a></li>
             </ul>
-            <button class = "btn log-in">log in</button>
+            <a href="<?= base_url('login/') ?>" >
+               <button class="btn log-in" type="button">Log In</button>
+            </a>
             <button class = "btn log-in">sig in</button>
         </div>
         <!-- end of side navbar -->
