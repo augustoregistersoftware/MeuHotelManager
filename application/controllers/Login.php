@@ -15,4 +15,9 @@ class Login extends CI_Controller {
         $this->load->view('pages/login');
 	}
 
+	public function esqueci_senha()
+	{
+        $this->load->view('pages/recuperar_senha');
+	}
+
 }
