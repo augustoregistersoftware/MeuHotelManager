@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="/meuHotel/imagens/logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= base_url('application/vendor/bootstrap/css/bootstrap.min.css') ?>">
 <!--===============================================================================================-->
@@ -28,6 +29,7 @@
 <!--===============================================================================================-->
 </head>
 <body>
+<form action="<?= base_url() ?>login/esqueceu_senha/" method="post">
 	
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('/meuHotel/imagens/fundo_login.png');">
@@ -37,18 +39,23 @@
 				</span>
 				<form class="login100-form validate-form p-b-33 p-t-5">
 
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Nome">
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="email" id="email" placeholder="Nome">
 						<span class="focus-input100" data-placeholder="&#128101;"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="text" name="pass" placeholder="E-mail">
+                    <div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="cemail" id="cemail" placeholder="Confirmar E-mail">
+						<span class="focus-input100" data-placeholder="&#128101;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="nome" id="nome" placeholder="Nome">
 						<span class="focus-input100" data-placeholder="&#128231;"></span>
 					</div>
 
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" type="submit">
 							Enviar
 						</button>
                         
@@ -83,93 +90,27 @@
 	<script src="<?= base_url('application/vendor/countdowntime/countdowntime.js') ?>"></script>
 <!--===============================================================================================-->
 	<script> 
-(function ($) {
-    "use strict";
+     document.getElementById('cemail').addEventListener('change', function() {
+        var email = document.getElementById('email').value;
+        var cmail = this.value;
 
-
-    /*==================================================================
-    [ Focus input ]*/
-    $('.input100').each(function(){
-        $(this).on('blur', function(){
-            if($(this).val().trim() != "") {
-                $(this).addClass('has-val');
-            }
-            else {
-                $(this).removeClass('has-val');
-            }
-        })    
-    })
-  
-  
-    /*==================================================================
-    [ Validate ]*/
-    var input = $('.validate-input .input100');
-
-    $('.validate-form').on('submit',function(){
-        var check = true;
-
-        for(var i=0; i<input.length; i++) {
-            if(validate(input[i]) == false){
-                showValidate(input[i]);
-                check=false;
-            }
+        if (email === cmail) {
+            
+        } else {
+            this.value = "";
+            controleDialog();
         }
-
-        return check;
     });
 
-
-    $('.validate-form .input100').each(function(){
-        $(this).focus(function(){
-           hideValidate(this);
+    function controleDialog(){
+        Swal.fire({
+            title: "Oops....",
+            text: "Os e-mails não coincidem. O campo de confirmação de e-mail foi limpo.",
+            icon: "warning"
         });
-    });
-
-    function validate (input) {
-        if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
-            if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
-                return false;
-            }
-        }
-        else {
-            if($(input).val().trim() == ''){
-                return false;
-            }
-        }
-    }
-
-    function showValidate(input) {
-        var thisAlert = $(input).parent();
-
-        $(thisAlert).addClass('alert-validate');
-    }
-
-    function hideValidate(input) {
-        var thisAlert = $(input).parent();
-
-        $(thisAlert).removeClass('alert-validate');
-    }
+	}
     
-    /*==================================================================
-    [ Show pass ]*/
-    var showPass = 0;
-    $('.btn-show-pass').on('click', function(){
-        if(showPass == 0) {
-            $(this).next('input').attr('type','text');
-            $(this).addClass('active');
-            showPass = 1;
-        }
-        else {
-            $(this).next('input').attr('type','password');
-            $(this).removeClass('active');
-            showPass = 0;
-        }
-        
-    });
-
-
-})(jQuery);
-</script>
+    </script>
 
 </body>
 </html>

@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="/meuHotel/imagens/logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= base_url('application/vendor/bootstrap/css/bootstrap.min.css') ?>">
 <!--===============================================================================================-->
@@ -28,6 +29,7 @@
 <!--===============================================================================================-->
 </head>
 <body>
+<form action="<?= base_url() ?>login/auth/" method="post">
 	
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('/meuHotel/imagens/fundo_login.png');">
@@ -37,18 +39,18 @@
 				</span>
 				<form class="login100-form validate-form p-b-33 p-t-5">
 
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="User name">
-						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="username" id="username" placeholder="User name">
+						<span class="focus-input100" data-placeholder="&#128101;"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
-						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="password" id="password" name="password" placeholder="Password">
+						<span class="focus-input100" data-placeholder="&#128231;"></span>
 					</div>
 
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" type="submit">
 							Login
 						</button>
                         
@@ -66,109 +68,95 @@
 	
 
 	<div id="dropDownSelect1"></div>
+
 	
 <!--===============================================================================================-->
-	<script src="<?= base_url('application/vendor/jquery/jquery-3.2.1.min.js') ?>"></script>
 <!--===============================================================================================-->
-	<script src="<?= base_url('application/vendor/animsition/js/animsition.min.js') ?>"></script>
-<!--===============================================================================================-->
-	<script src="<?= base_url('application/vendor/bootstrap/js/popper.js') ?>"></script>
-	<script src="<?= base_url('application/vendor/bootstrap/js/bootstrap.min.js"') ?>></script>
-<!--===============================================================================================-->
-	<script src="<?= base_url('application/vendor/select2/select2.min.js') ?>"></script>
-<!--===============================================================================================-->
-	<script src="<?= base_url('application/vendor/daterangepicker/moment.min.js') ?>"></script>
-	<script src="<?= base_url('application/vendor/daterangepicker/daterangepicker.js') ?>"></script>
-<!--===============================================================================================-->
-	<script src="<?= base_url('application/vendor/countdowntime/countdowntime.js') ?>"></script>
-<!--===============================================================================================-->
-	<script> 
-(function ($) {
-    "use strict";
+<script> 
 
-
-    /*==================================================================
-    [ Focus input ]*/
-    $('.input100').each(function(){
-        $(this).on('blur', function(){
-            if($(this).val().trim() != "") {
-                $(this).addClass('has-val');
-            }
-            else {
-                $(this).removeClass('has-val');
-            }
-        })    
-    })
-  
-  
-    /*==================================================================
-    [ Validate ]*/
-    var input = $('.validate-input .input100');
-
-    $('.validate-form').on('submit',function(){
-        var check = true;
-
-        for(var i=0; i<input.length; i++) {
-            if(validate(input[i]) == false){
-                showValidate(input[i]);
-                check=false;
-            }
-        }
-
-        return check;
-    });
-
-
-    $('.validate-form .input100').each(function(){
-        $(this).focus(function(){
-           hideValidate(this);
+function avisoErroSenha() {
+        Swal.fire({
+            title: "Oops....",
+            text: "Login ou Senha errado",
+            icon: "error"
         });
-    });
-
-    function validate (input) {
-        if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
-            if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
-                return false;
-            }
-        }
-        else {
-            if($(input).val().trim() == ''){
-                return false;
-            }
-        }
-    }
-
-    function showValidate(input) {
-        var thisAlert = $(input).parent();
-
-        $(thisAlert).addClass('alert-validate');
-    }
-
-    function hideValidate(input) {
-        var thisAlert = $(input).parent();
-
-        $(thisAlert).removeClass('alert-validate');
-    }
-    
-    /*==================================================================
-    [ Show pass ]*/
-    var showPass = 0;
-    $('.btn-show-pass').on('click', function(){
-        if(showPass == 0) {
-            $(this).next('input').attr('type','text');
-            $(this).addClass('active');
-            showPass = 1;
-        }
-        else {
-            $(this).next('input').attr('type','password');
-            $(this).removeClass('active');
-            showPass = 0;
-        }
         
+        // Limpa o parâmetro 'aviso' da URL
+        limparParametroURL('aviso');
+    }
+
+function avisoAcertoSenha() {
+        Swal.fire({
+            title: "Bem-Vindo",
+            text: "Aproveite Sua Estadia",
+            icon: "sucess"
+        });
+        
+        // Limpa o parâmetro 'aviso' da URL
+        limparParametroURL('aviso');
+    }
+
+function boas_vindas()
+    {
+        const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+        });
+        Toast.fire({
+        icon: "success",
+        title: "E-mail, Enviado com sucesso!"
+        });
+    }
+
+function limparParametroURL(nomeParametro) {
+        if (history.replaceState) {
+            // Obtém a URL atual sem os parâmetros de consulta
+            const novaURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
+
+            // Substitui a URL atual sem o parâmetro especificado
+            history.replaceState({}, document.title, novaURL);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Verifica se o parâmetro 'aviso' está presente na URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const avisoParam = urlParams.get('aviso');
+
+        // Se o parâmetro 'aviso' for 'sucesso', exibe a modal
+        if (avisoParam === 'login_errado') {
+            avisoErroSenha();
+        }
     });
 
+    document.addEventListener("DOMContentLoaded", function() {
+        // Verifica se o parâmetro 'aviso' está presente na URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const avisoParam = urlParams.get('aviso');
 
-})(jQuery);
+        // Se o parâmetro 'aviso' for 'sucesso', exibe a modal
+        if (avisoParam === 'login_certo') {
+            avisoAcertoSenha();
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Verifica se o parâmetro 'aviso' está presente na URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const avisoParam = urlParams.get('aviso');
+
+        // Se o parâmetro 'aviso' for 'sucesso', exibe a modal
+        if (avisoParam === 'envio') {
+          boas_vindas();
+        }
+    });
 </script>
 
 </body>
