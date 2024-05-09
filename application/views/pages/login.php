@@ -86,17 +86,20 @@ function avisoErroSenha() {
     }
 
 function avisoAcertoSenha() {
-        Swal.fire({
-            title: "Bem-Vindo",
-            text: "Aproveite Sua Estadia",
-            icon: "sucess"
-        });
+    Swal.fire({
+    title: "Olá,<?php echo $this->session->userdata('name'); ?>",
+    text: "Seja muito bem-vindo(a)! Hoje, vamos nos aventurar juntos em uma jornada cheia de possibilidades. Estou ansioso(a) para explorar, aprender e criar momentos inesquecíveis ao seu lado. Vamos fazer deste dia algo extraordinário!",
+    imageUrl: "https://ouch-cdn2.icons8.com/JlfQgQozPSgBq00v8E7N2L96CLHslRQofr_gnO39aRY/rs:fit:608:456/extend:false/wm:1:re:0:0:0.8/wmid:ouch/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNzMx/LzM1MDcyODA3LTky/NmYtNGM5Mi1hZjQw/LTgyNmI0MjQ5MWJi/OS5zdmc.png",
+    imageWidth: 400,
+    imageHeight: 200,
+    imageAlt: "Custom image"
+    });
         
         // Limpa o parâmetro 'aviso' da URL
         limparParametroURL('aviso');
     }
 
-function boas_vindas()
+function envioEmail()
     {
         const Toast = Swal.mixin({
         toast: true,
@@ -154,7 +157,7 @@ function limparParametroURL(nomeParametro) {
 
         // Se o parâmetro 'aviso' for 'sucesso', exibe a modal
         if (avisoParam === 'envio') {
-          boas_vindas();
+          envioEmail();
         }
     });
 </script>
