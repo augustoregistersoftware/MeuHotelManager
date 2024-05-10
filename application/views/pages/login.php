@@ -85,15 +85,24 @@ function avisoErroSenha() {
         limparParametroURL('aviso');
     }
 
-function avisoAcertoSenha() {
-        Swal.fire({
-            title: "Bem-Vindo",
-            text: "Aproveite Sua Estadia",
-            icon: "sucess"
+
+function envioEmail()
+    {
+        const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
         });
-        
-        // Limpa o parâmetro 'aviso' da URL
-        limparParametroURL('aviso');
+        Toast.fire({
+        icon: "success",
+        title: "E-mail, Enviado com sucesso!"
+        });
     }
 
 function limparParametroURL(nomeParametro) {
@@ -123,8 +132,8 @@ function limparParametroURL(nomeParametro) {
         const avisoParam = urlParams.get('aviso');
 
         // Se o parâmetro 'aviso' for 'sucesso', exibe a modal
-        if (avisoParam === 'login_certo') {
-            avisoAcertoSenha();
+        if (avisoParam === 'envio') {
+          envioEmail();
         }
     });
 </script>
