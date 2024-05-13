@@ -79,51 +79,35 @@
             </li>
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="users"></i><span>Usuarios</span></a>
+                  data-feather="users"></i><span>Pessoas</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="<?= base_url() ?>cadastro_login">Cadastro De Usuario</a></li>
-                <li><a class="nav-link" href="widget-data.html">Cadastro De Perfil</a></li>
+                <li><a class="nav-link" href="widget-data.html">Cadastro De Clientes</a></li>
               </ul>
             </li>
 
             <li class="dropdown">
-              <a href="<?= base_url() ?>clientes" class="nav-link"><i data-feather="user"></i><span>Clientes</span></a>
+              <a href="<?= base_url() ?>produto" class="nav-link"><i data-feather="inbox"></i><span>Quartos</span></a>
             </li>
 
             <li class="dropdown">
-              <a href="<?= base_url() ?>produto" class="nav-link"><i data-feather="box"></i><span>Produtos</span></a>
+              <a class="nav-link" href="<?= base_url() ?>fornecedor"><i data-feather="briefcase"></i>Checkin</a>
             </li>
 
             <li class="dropdown">
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="truck"></i><span>Fornecedor</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="<?= base_url() ?>fornecedor">Cadastro</a></li>
-                <li><a class="nav-link" href="<?= base_url() ?>compra">Compras</a></li>
-              </ul>
-            </li>
-
-            <li class="dropdown">
-              <a href="<?= base_url() ?>localizacao" class="nav-link"><i data-feather="map-pin"></i><span>Localização</span></a>
+              <a href="<?= base_url() ?>localizacao" class="nav-link"><i data-feather="sliders"></i><span>Tipos De Quarto e Preços</span></a>
             </li>
 
 
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="dollar-sign"></i><span>Financeiro</span></a>
+                  data-feather="settings"></i><span>Configuração</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="<?= base_url() ?>fornecedor">Vendas</a></li>
-                <li><a class="nav-link" href="<?= base_url() ?>compra">Cobrança</a></li>
-                <li><a class="nav-link" href="<?= base_url() ?>compra">Viagem</a></li>
-                <li><a class="nav-link" href="<?= base_url() ?>compra">Bancos</a></li>
-                <li><a class="nav-link" href="<?= base_url() ?>compra">Forma De Pagamento</a></li>
-                <li><a class="nav-link" href="<?= base_url() ?>compra">Status</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>fornecedor">Custos E Serviços</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>compra">Home</a></li>
               </ul>
             </li>
 
-            <li class="dropdown">
-              <a href="<?= base_url() ?>empresa" class="nav-link"><i data-feather="hexagon"></i><span>Empresa</span></a>
-          </li>
             
           </ul>
         </aside>

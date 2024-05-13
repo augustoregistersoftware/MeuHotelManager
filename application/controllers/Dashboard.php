@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller {
             $data['total_livre'] = $this->dashboard_model->livres();
             $data['total_faturado'] = $this->dashboard_model->total_faturado();
             $data['clientes'] = $this->dashboard_model->select_clientes();
+            $data['diferenca_checkin'] = $this->dashboard_model->select_diferenca_checkin();
 
 			$this->load->view('templates/header');
 			$this->load->view('templates/navbar');

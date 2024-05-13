@@ -42,4 +42,24 @@ class Dashboard_model extends CI_Model {
         ")->result_array();
     }
 
+    public function select_diferenca_checkin()
+    {
+        return $this->db->query("SELECT
+        hoje.quantidade AS quantidade_hoje,
+        ontem.quantidade AS quantidade_ontem,
+        ROUND(
+            IF(ontem.quantidade = 0,
+               100 * IF(hoje.quantidade > 0, 1, 0),  -- Se ontem = 0 e hoje > 0, 100%; se hoje = 0, 0%
+               ((hoje.quantidade - ontem.quantidade) / ontem.quantidade) * 100),
+            2
+        ) AS diferenca_percentual
+    FROM
+        (SELECT COUNT(*) AS quantidade
+         FROM checkin
+         WHERE DATE(data_entrada) = CURDATE()) AS hoje,
+        (SELECT COUNT(*) AS quantidade
+         FROM checkin
+         WHERE DATE(data_entrada) = CURDATE() - INTERVAL 1 DAY) AS ontem; ")->row_array();
+    }
+
 }

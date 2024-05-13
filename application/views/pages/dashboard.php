@@ -167,12 +167,12 @@
     <div class="icon icon-online">📦</div>
     <div class="metric-description">
       <div>Quartos Iniciados</div>
-      <?php if($diferenca_compra['diferenca_percentual'] > 0) : ?>
-        <div class="percentage positive">+<?= number_format($diferenca_compra['diferenca_percentual'],2,",",".")?>%</div>
-        <div class="number"><?= $diferenca_compra['quantidade_hoje']?></div>
+      <?php if($diferenca_checkin['diferenca_percentual'] > 0) : ?>
+        <div class="percentage positive">+<?= number_format($diferenca_checkin['diferenca_percentual'],2,",",".")?>%</div>
+        <div class="number"><?= $diferenca_checkin['quantidade_hoje']?></div>
       <?php else :?>
-        <div class="percentage negative"><?= number_format($diferenca_compra['diferenca_percentual'],2,",",".")?>%</div>
-        <div class="number"><?= $diferenca_compra['quantidade_hoje']?></div>
+        <div class="percentage negative"><?= number_format($diferenca_checkin['diferenca_percentual'],2,",",".")?>%</div>
+        <div class="number"><?= $diferenca_checkin['quantidade_hoje']?></div>
       <?php endif ; ?>  
       <div>últimas 24 horas</div>
     </div>
@@ -202,9 +202,6 @@
 
 
 <script>
-	function abrirGraficoEstoque(){
-		document.getElementById("d1").setAttribute("open","");
-	}
 
   function boas_vindas(){
     Swal.fire({
