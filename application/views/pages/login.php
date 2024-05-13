@@ -85,6 +85,7 @@ function avisoErroSenha() {
         limparParametroURL('aviso');
     }
 
+<<<<<<< HEAD
 function avisoAcertoSenha() {
     Swal.fire({
     title: "Olá,<?php echo $this->session->userdata('name'); ?>",
@@ -97,6 +98,26 @@ function avisoAcertoSenha() {
         
         // Limpa o parâmetro 'aviso' da URL
         limparParametroURL('aviso');
+=======
+
+function envioEmail()
+    {
+        const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+        });
+        Toast.fire({
+        icon: "success",
+        title: "E-mail, Enviado com sucesso!"
+        });
+>>>>>>> f81afb4991797fba446b6cc94a29974b33fe53a5
     }
 
 function envioEmail()
@@ -145,8 +166,8 @@ function limparParametroURL(nomeParametro) {
         const avisoParam = urlParams.get('aviso');
 
         // Se o parâmetro 'aviso' for 'sucesso', exibe a modal
-        if (avisoParam === 'login_certo') {
-            avisoAcertoSenha();
+        if (avisoParam === 'envio') {
+          envioEmail();
         }
     });
 
