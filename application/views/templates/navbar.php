@@ -25,13 +25,13 @@
               <div class="dropdown-header">
                 Messages
                 <div class="float-right">
-                  <a href="<?php base_url(); ?>/finar/messages/ciencia_mensagem/">Marcar Como Lidas</a>
+                  <a href="<?php base_url(); ?>/meuHotel/messages/ciencia_mensagem/">Marcar Como Lidas</a>
                 </div>
               </div>  
               <div class="dropdown-list-content dropdown-list-message">
               <?php foreach($listagem as $listagem) : ?> 
                 <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar
-											text-white"><img alt="image" src="\finar\imagens\lagom-email.png" class="rounded-circle">
+											text-white"><img alt="image" src="\meuHotel\imagens\lagom-email.png" class="rounded-circle">
                   </span> <span class="dropdown-item-desc"> <span class="message-user"><?= $listagem['nome']?></span>
                     <span class="time messege-text"><?= $listagem['conteudo']?></span>
                     <span class="time"><?= $listagem['tempo_passado']?> Ago</span>
@@ -105,6 +105,7 @@
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="<?= base_url() ?>fornecedor">Custos E Serviços</a></li>
                 <li><a class="nav-link" href="<?= base_url() ?>compra">Home</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>pagamento_pix">Configurar Pix</a></li>
               </ul>
             </li>
 
