@@ -15,23 +15,12 @@ class Pagamento_pix extends CI_Controller {
     return $this;
 	}
 
-    public function simpleQRCode($text, $size = 1000) {
-        $size = escapeshellarg($size);
-        $text = escapeshellarg($text);  // Assegura que o texto é seguro para ser processado
-        
-        $svgCode = '<svg xmlns="http://www.w3.org/2000/svg" width="'.$size.'" height="'.$size.'" viewBox="0 0 21 21">';
-        for ($i = 0; $i < strlen($text); $i++) {
-            $x = ($i % 3) * 7;  // Posição X baseada no índice do caractere
-            $y = intval($i / 3) * 7;  // Posição Y baseada no índice do caractere
-            $color = (ord($text[$i]) % 2 === 0) ? '#000' : '#fff';  // Cor alternada
-            $svgCode .= '<rect x="'.$x.'" y="'.$y.'" width="7" height="7" fill="'.$color.'"/>';
-        }
-        $svgCode .= '</svg>';
-        return $svgCode;
-    }
     
     public function gerarqrcode()
     {
+
+      include_once APPPATH . 'third_party/phpqrcode/qrcode.php';
+
         
         $pixKey = $_POST['pixkey'];
         $descricao = $_POST['descricao'];
@@ -75,9 +64,15 @@ class Pagamento_pix extends CI_Controller {
          $chavefinal['valor'] =$valorpix;
          $chavefinal['chavefinal'] =$pix;
 
-         $qrCodeSVG = $this->simpleQRCode($chavefinal['chavefinal']);
-    
-         $chavefinal['qrcode_svg'] = $qrCodeSVG;
+         $text = $pix;
+         $name = md5(time()) . ".png";
+
+         $file = "files/{$name}";
+         $generator = new QRCode($text);
+         $image = $generator->render_image();
+         imagepng($image, FCPATH . $file);
+         imagedestroy($image);
+         $chavefinal['file'] = base_url($file);
          
          $chavefinal['title'] = 'Chave Pix';
          

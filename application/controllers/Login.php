@@ -43,11 +43,7 @@ class Login extends CI_Controller {
 		$this->session->set_userdata('login',$validate_permission['login']);
 		$this->session->set_userdata('log','logged');
 		$this->session->set_flashdata('suc','Login Efetuado!');
-<<<<<<< HEAD
-		redirect("login?aviso=login_certo");
-=======
 		redirect("dashboard?aviso=login_certo");
->>>>>>> f81afb4991797fba446b6cc94a29974b33fe53a5
 	}
 
 	public function esqueci_senha()

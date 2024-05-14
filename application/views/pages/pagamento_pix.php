@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body, html {
+        .container-pagamento {
             height: 100%; /* necessário para o container principal ter altura completa */
             margin: 0; /* remove a margem padrão */
             display: flex; /* habilita flexbox para o corpo */
@@ -14,13 +14,48 @@
             padding: 20px; /* adiciona um pouco de padding ao redor do corpo para evitar colar na borda da tela */
         }
 
+        @media (max-width: 768px) {
+        .container-pagamento {
+            top: 70%;
+        }
+    }
+
+    /* Em telas maiores, mais ao centro */
+    @media (min-width: 769px) {
+        .container-pagamento {
+            top: 60%;
+        }
+    }
+
+    .qr-code {
+        margin: 10px 0; /* Margem para espaçamento vertical */
+        background-color: #ffffff; /* Fundo branco para o QR Code */
+    }
+
+    .botao-copiar button {
+        width: 100%; /* O botão ocupa toda a largura disponível */
+        padding: 10px 20px; /* Padding confortável para o botão */
+        background-color: #4CAF50; /* Cor verde para o botão */
+        color: white; /* Texto branco */
+        border: none; /* Sem borda */
+        border-radius: 4px; /* Bordas arredondadas para o botão */
+        cursor: pointer; /* Cursor de mão quando hover */
+    }
+
+    .ambiente-seguro {
+        margin-top: 10px; /* Espaçamento no topo */
+        font-size: 0.8em; /* Tamanho de fonte menor */
+        color: #666; /* Cor cinza */
+    }
+
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <span id="status"></span>
-<div class="row container">
-    <div class="col-lg-4"></div>
+<div class="container-pagamento">
+    <div class="detalhes-pagamento"></div>
     <div class="col-lg-4" style="border: 1px solid #ccc; border-radius: 10px; padding: 15px;">
         <center>
         <p>Validade do pagamento:</p>
@@ -28,7 +63,7 @@
         
         <span style="color: black; font-size: 17px;">Total a pagar: </span><b style="color: green; font-size: 19px;">R$ <?php echo number_format($valor,2,",",".");?></b>
         <br>
-        <div><?= $qrcode_svg ?></div>
+        <img src="<?= $file ?>" />
 
         <br>
         <input type="text" class="form-control" id="linhapix" value="<?php echo $chavefinal;?>" readonly>
