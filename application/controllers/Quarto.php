@@ -17,7 +17,6 @@ class Quarto extends CI_Controller {
 			redirect("login");
 		}else{
             $data['quartos'] = $this->quarto_model->quartos();
-            $data['situacao'] = $this->quarto_model->situacao();
 
 			$this->load->view('templates/header');
 			$this->load->view('templates/navbar',$data);
@@ -26,5 +25,25 @@ class Quarto extends CI_Controller {
 			$this->load->view('templates/footer');
 		}
 	}
+
+	public function foto_quarto()
+	{
+        if($this->session->userdata('log')!="logged"){
+			redirect("login");
+		}else{
+
+			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/sidebarsettings');
+			$this->load->view('pages/fotos_quarto');
+			$this->load->view('templates/footer');
+		}
+	}
+
+	public function obter_dados() {
+		$idDoQuarto = $this->input->get('idDoQuarto');
+        $dados = $this->quarto_model->obter_dados($idDoQuarto);
+        echo json_encode($dados);
+    }
 
 }

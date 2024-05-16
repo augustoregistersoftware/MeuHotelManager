@@ -91,12 +91,12 @@
                   data-feather="inbox"></i><span>Quarto</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="<?= base_url() ?>quarto/cadastro">Cadastro Quarto</a></li>
-                <li><a class="nav-link" href="<?= base_url() ?>compra">Cadastro Foto</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>quarto/foto_quarto">Cadastro Foto</a></li>
               </ul>
             </li>
 
             <li class="dropdown">
-              <a class="nav-link" href="<?= base_url() ?>fornecedor"><i data-feather="briefcase"></i><span>Checkin</span></a>
+              <a class="nav-link" href="<?= base_url() ?>checkin"><i data-feather="briefcase"></i><span>Checkin</span></a>
             </li>
 
             <li class="dropdown">
