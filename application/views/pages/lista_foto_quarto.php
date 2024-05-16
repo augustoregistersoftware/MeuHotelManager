@@ -28,7 +28,10 @@
                     <td><?= $fotos['titulo']?></td>
                     <th><?= $fotos['descricao']?></th>
                     <td> 
-                    <a title="Abrir Foto" href="javascript:goAbrir(<?= $fotos['id_quarto']?>)" class="btn btn-danger btn-sm btn-danger"><i class="fa-solid fa-image"></i></a>
+                    <a title="Abrir Carrosel De Foto" href="javascript:goAbrir(<?= $fotos['id_quarto']?>)" class="btn btn-danger btn-sm btn-info"><i class="fa-solid fa-layer-group"></i></a>
+                    <!--<a title="Abrir Foto" href="javascript:goAbrir(<?= $fotos['id_quarto']?>)" class="btn btn-danger btn-sm btn-info"><i class="fa-solid fa-camera"></i></a>-->
+                    <a title="Abrir Foto" href="#" class="btn btn-info btn-sm btn-info abrir-foto" data-toggle="modal" data-target="#modalFoto" data-caminho="\meuHotel\imagens\<?= $fotos['caminho'] ?>"><i class="fa-solid fa-camera"></i></a>
+                    <a title="Baixar Imagem" class="btn btn-info btn-sm btn-info abrir-foto" onclick="downloadImage('/meuHotel/imagens/<?= $fotos['caminho'] ?>')"><i class="fa-solid fa-arrow-down"></i></a>
                     <a title="Deletar Foto" href="javascript:goDelete(<?= $fotos['id_foto_quarto']?>)" class="btn btn-danger btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></a>
                 </tr>
                 <?php endforeach;?>
@@ -45,12 +48,29 @@
     
 </main>
 
+<!-- Modal -->
+<div class="modal fade" id="modalFoto" tabindex="-1" role="dialog" aria-labelledby="modalFotoLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalFotoLabel">Foto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="" class="img-fluid" id="fotoExibida">
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 function goAbrir(id) {
     swal({
         title: "Deseja Realmente Ver as Fotos?",
         text: "",
-        icon: "question",
+        icon: "warning",
         buttons: true,
         dangerMode: true,
     }).then((willDelete) => {
@@ -80,6 +100,25 @@ function goDelete(id) {
             return false;
         }
     })
+}
+
+$(document).ready(function() {
+    // Ao clicar no link
+    $('.abrir-foto').click(function() {
+      // Obter o caminho da foto do atributo data-caminho
+      var caminhoFoto = $(this).data('caminho');
+      // Definir o src da imagem dentro da modal
+      $('#fotoExibida').attr('src', caminhoFoto);
+    });
+  });
+
+  function downloadImage(imagePath) {
+    const link = document.createElement('a');
+    link.href = imagePath;
+    link.download = imagePath.substring(imagePath.lastIndexOf('/') + 1);  // Isso define o nome do arquivo para o nome original da imagem.
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 
 </script>
