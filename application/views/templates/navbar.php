@@ -91,7 +91,7 @@
                   data-feather="inbox"></i><span>Quarto</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="<?= base_url() ?>quarto/cadastro">Cadastro Quarto</a></li>
-                <li><a class="nav-link" href="<?= base_url() ?>quarto/foto_quarto">Cadastro Foto</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>quarto/lista_foto">Cadastro Foto</a></li>
               </ul>
             </li>
 

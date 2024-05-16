@@ -30,7 +30,7 @@
 		<?php foreach($total_reservado as $total_reservado) : ?>
             <div class="numbers"><?= $total_reservado['quantidade_reservado']?></div>
 		<?php endforeach;?>
-            <div class="cardName">Total Quartos Reservados</div>
+            <div class="cardName">Total Reservado</div>
             <p>Esse mês</p>
         </div>
         <div class="iconBx">
@@ -45,7 +45,7 @@
 		<?php foreach($total_livre as $total_livre) : ?>
             <div class="numbers"><?= $total_livre['quantidade_livre']?></div>
 		<?php endforeach;?>
-            <div class="cardName">Total Quartos Finalizados</div>
+            <div class="cardName">Total Hospedados Finalizados</div>
             <p>Esse mês</p>
         </div>
         <div class="iconBx">

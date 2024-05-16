@@ -39,7 +39,11 @@
                     <th>R$ <?= number_format($quartos['preco'],2, ",", ".")?></th>
                     <td> 
                         <a title="Editar Quarto" href="javascript:goEdit(<?= $quartos['id_quarto']?>)" class="btn btn-warning btn-sm btn-info"><i class="fa-solid fa-pencil"></i></a>
-                        <a title="Inativar Quarto" href="javascript:goInativa(<?= $quartos['id_quarto']?>)" class="btn btn-primary btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></a>
+                        <?php if($quartos['status'] == 'T') : ?>
+                            <a title="Inativar Quarto" href="javascript:goInativa(<?= $quartos['id_quarto']?>)" class="btn btn-primary btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></a>
+                        <?php else :?>
+                            <a title="Ativar Quarto" href="javascript:goInativa(<?= $quartos['id_quarto']?>)" class="btn btn-primary btn-sm btn-sucess"><i class="fa-solid fa-check"></i></a>
+                        <?php endif ;?>    
                 </tr>
                 <?php endforeach;?>
             </tbody>

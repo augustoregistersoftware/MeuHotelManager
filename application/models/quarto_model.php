@@ -8,6 +8,22 @@ class Quarto_model extends CI_Model {
         FROM quarto")->result_array();
     }
 
+    public function fotos()
+    {
+        return $this->db->query("SELECT
+        quarto.nome as nome_quarto,
+        foto_quarto.*
+        FROM foto_quarto
+        INNER JOIN quarto on quarto.id_quarto = foto_quarto.id_quarto")->result_array();
+    }
+
+    public function select_fotos_id($id)
+    {
+        return $this->db->query('SELECT *
+        FROM foto_quarto
+        WHERE id_quarto = '.$this->db->escape($id).'')->result_array();
+    }
+
     public function obter_dados($id)
     {
         return $this->db->query('SELECT 
@@ -22,6 +38,11 @@ class Quarto_model extends CI_Model {
         FROM checkin
         INNER JOIN cliente on cliente.id_cliente = checkin.id_cliente
         WHERE id_quarto = '.$this->db->escape($id).'')->result_array();
+    }
+
+    public function inserte_documento($data_foto)
+    {
+        $this->db->insert("foto_quarto", $data_foto);
     }
 
 }
