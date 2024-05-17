@@ -8,11 +8,13 @@ class Visit extends CI_Controller {
     public function __construct()
     {
 		parent::__construct();
+		$this->load->model("quarto_model");
     }
 
 	public function index()
 	{
-        $this->load->view('pages/index');
+		$data['quartos'] = $this->quarto_model->quartos();
+        $this->load->view('pages/index',$data);
 	}
 
 }

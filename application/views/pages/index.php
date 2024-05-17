@@ -149,99 +149,37 @@
             <div class = "title">
                 <h2>rooms</h2>
             </div>
+            
             <div class = "rooms-container">
                 <!-- single room -->
+                <?php foreach($quartos as $quartos) : ?> 
                 <article class = "room">
                     <div class = "room-image">
                         <img src = "/meuHotel/imagens/img1.jpg" alt = "room image">
                     </div>
                     <div class = "room-text">
-                        <h3>Luxury Rooms</h3>
+                        <h3><?= $quartos['nome'] ?></h3>
                         <ul>
                             <li>
-                                <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
+                                
                             </li>
                             <li>
-                                <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
+                                
                             </li>
                             <li>
-                                <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
+                              
                             </li>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus exercitationem repellendus maxime ullam tempore architecto provident unde expedita quam beatae, dolore eligendi molestias sint tenetur incidunt voluptas. Unde corporis qui iusto vitae. Aut nesciunt id iste, cum esse commodi nemo?</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis quasi officiis cumque, fugiat nostrum sunt, tempora animi dicta laborum beatae ratione doloremque. Delectus odio sit eius labore, atque quo?</p>
+                        <p><?= $quartos['descricao'] ?></p>
                         <p class = "rate">
-                            <span>$99.00 /</span> Per Night
+                            <span>R$<?= number_format($quartos['preco'],2, ",", ".") ?> /</span> Per Night
                         </p>
                         <button type = "button" class = "btn">book now</button>
                     </div>
                 </article>
-                <!-- end of single room -->
-                <!-- single room -->
-                <article class = "room">
-                    <div class = "room-image">
-                        <img src = "/meuHotel/imagens/img2.jpg" alt = "room image">
-                    </div>
-                    <div class = "room-text">
-                        <h3>Luxury Rooms</h3>
-                        <ul>
-                            <li>
-                                <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
-                            </li>
-                            <li>
-                                <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
-                            </li>
-                            <li>
-                                <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
-                            </li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus exercitationem repellendus maxime ullam tempore architecto provident unde expedita quam beatae, dolore eligendi molestias sint tenetur incidunt voluptas. Unde corporis qui iusto vitae. Aut nesciunt id iste, cum esse commodi nemo?</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis quasi officiis cumque, fugiat nostrum sunt, tempora animi dicta laborum beatae ratione doloremque. Delectus odio sit eius labore, atque quo?</p>
-                        <p class = "rate">
-                            <span>$99.00 /</span> Per Night
-                        </p>
-                        <button type = "button" class = "btn">book now</button>
-                    </div>
-                </article>
-                <!-- end of single room -->
-                <!-- single room -->
-                <article class = "room">
-                    <div class = "room-image">
-                        <img src = "/meuHotel/imagens/img3.jpg" alt = "room image">
-                    </div>
-                    <div class = "room-text">
-                        <h3>Luxury Rooms</h3>
-                        <ul>
-                            <li>
-                                <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
-                            </li>
-                            <li>
-                                <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
-                            </li>
-                            <li>
-                                <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
-                            </li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus exercitationem repellendus maxime ullam tempore architecto provident unde expedita quam beatae, dolore eligendi molestias sint tenetur incidunt voluptas. Unde corporis qui iusto vitae. Aut nesciunt id iste, cum esse commodi nemo?</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis quasi officiis cumque, fugiat nostrum sunt, tempora animi dicta laborum beatae ratione doloremque. Delectus odio sit eius labore, atque quo?</p>
-                        <p class = "rate">
-                            <span>$99.00 /</span> Per Night
-                        </p>
-                        <button type = "button" class = "btn">book now</button>
-                    </div>
-                </article>
-                <!-- end of single room -->
+            <?php endforeach;?> 
             </div>
-        </section>
+            </section>
 
 
         <section class = "customers" id = "customers">
