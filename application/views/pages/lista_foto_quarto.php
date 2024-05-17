@@ -37,6 +37,16 @@
                 <?php endforeach;?>
             </tbody>
         </table>
+
+        <div class="toggle-switch">
+            <input type="checkbox" id="toggle-rocket" class="toggle-input" onclick="toggleRocket()" checked>
+            <label for="toggle-rocket" class="toggle-label"></label>
+        </div>
+        <div class="flash" id="flash">
+            <i title="Dica de Cadastro" class="fas fa-rocket"></i>
+            <div class="notification-badge"></div>
+        </div>
+    </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -121,4 +131,91 @@ $(document).ready(function() {
     document.body.removeChild(link);
 }
 
+let rocketVisible = true;
+
+function toggleRocket() {
+    const rocket = document.getElementById('flash');
+    rocketVisible = !rocketVisible;
+    rocket.style.display = rocketVisible ? 'block' : 'none';
+}
+
+const flash = document.getElementById('flash');
+    flash.addEventListener('click', () => {
+        ajuda();
+    });
+
+    function ajuda(){
+        swal("Dica Na Tela De Foto ;)", "No Botão CARROSEL ele ira mostra em formato dinamico todas as fotos do quarto, no botão ABRIR FOTO ele mostrar avulso cada foto no cadastro do quarto e no ultimo botão voce pode baixar a imagem que quiser");
+    }
+    // Na sua função de visualização
+
 </script>
+
+<style>
+    
+
+.flash {
+    width: 60px; /* Largura da div */
+    height: 60px; /* Altura da div */
+    background-color: blue; /* Cor de fundo da div */
+    border-radius: 50%; /* Torna a div redonda */
+    position: fixed; /* Posição fixa */
+    bottom: 20px; /* Distância do fundo */
+    right: 20px; /* Distância da direita */
+    display: flex; /* Para centralizar o ícone */
+    justify-content: center; /* Para centralizar o ícone */
+    align-items: center; /* Para centralizar o ícone */
+    cursor: pointer; /* Mostrar o cursor como um ponteiro */
+}
+
+.flash i {
+    font-size: 2.5em; /* Tamanho do ícone */
+    color: white; /* Cor do ícone */
+    display: flex; /* Para centralizar o ícone */
+    justify-content: center; /* Para centralizar o ícone */
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: background-color 0.3s;
+}
+
+.toggle-label::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.toggle-input:checked + .toggle-label {
+  background-color: #2196F3;
+}
+
+.toggle-input:checked + .toggle-label::after {
+  transform: translateX(26px);
+}
+
+</style>

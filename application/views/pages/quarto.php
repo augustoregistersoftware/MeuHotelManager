@@ -44,6 +44,7 @@
                         <?php else :?>
                             <a title="Ativar Quarto" href="javascript:goInativa(<?= $quartos['id_quarto']?>)" class="btn btn-primary btn-sm btn-sucess"><i class="fa-solid fa-check"></i></a>
                         <?php endif ;?>    
+                        <a title="Config Avançada Quarto" href="javascript:goEdit(<?= $quartos['id_quarto']?>)" class="btn btn-warning btn-sm btn-info"><i class="fa-solid fa-gear"></i></a>
                 </tr>
                 <?php endforeach;?>
             </tbody>
