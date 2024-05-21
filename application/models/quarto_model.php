@@ -8,6 +8,16 @@ class Quarto_model extends CI_Model {
         FROM quarto")->result_array();
     }
 
+    public function quartos_visit()
+    {
+        return $this->db->query("SELECT
+        quarto.*,
+        config_quarto.*
+        FROM quarto 
+        LEFT JOIN config_quarto on config_quarto.id_quarto = quarto.id_quarto
+        WHERE quarto.status = 'T'")->result_array();
+    }
+
     public function fotos()
     {
         return $this->db->query("SELECT
@@ -40,9 +50,29 @@ class Quarto_model extends CI_Model {
         WHERE id_quarto = '.$this->db->escape($id).'')->result_array();
     }
 
+
+    public function valida_ativacao($id)
+    {
+        return $this->db->query('SELECT *
+        FROM config_quarto
+        WHERE id_quarto = '.$this->db->escape($id).'')->result_array();
+    }
+
+    public function config_quarto($id)
+    {
+        return $this->db->query('SELECT *
+        FROM config_quarto
+        WHERE id_quarto = '.$this->db->escape($id).'')->row_array();
+    }
+
     public function inserte_documento($data_foto)
     {
         $this->db->insert("foto_quarto", $data_foto);
+    }
+
+    public function inserte_config($data_foto)
+    {
+        $this->db->insert("config_quarto", $data_foto);
     }
 
 }

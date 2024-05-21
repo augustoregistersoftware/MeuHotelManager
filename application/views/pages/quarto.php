@@ -42,9 +42,9 @@
                         <?php if($quartos['status'] == 'T') : ?>
                             <a title="Inativar Quarto" href="javascript:goInativa(<?= $quartos['id_quarto']?>)" class="btn btn-primary btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></a>
                         <?php else :?>
-                            <a title="Ativar Quarto" href="javascript:goInativa(<?= $quartos['id_quarto']?>)" class="btn btn-primary btn-sm btn-sucess"><i class="fa-solid fa-check"></i></a>
+                            <a title="Ativar Quarto" href="javascript:goAtiva(<?= $quartos['id_quarto']?>)" class="btn btn-info btn-sm btn-sucess"><i class="fa-solid fa-check"></i></a>
                         <?php endif ;?>    
-                        <a title="Config Avançada Quarto" href="javascript:goEdit(<?= $quartos['id_quarto']?>)" class="btn btn-warning btn-sm btn-info"><i class="fa-solid fa-gear"></i></a>
+                        <a title="Config Avançada Quarto" href="javascript:goConfig(<?= $quartos['id_quarto']?>)" class="btn btn-warning btn-sm btn-info"><i class="fa-solid fa-gear"></i></a>
                 </tr>
                 <?php endforeach;?>
             </tbody>
@@ -99,15 +99,67 @@ function goEdit(id) {
     }
 }
 
-function goAtiva(id) {
-    var baseUrl = '<?php echo base_url(); ?>'; // Certifique-se de que base_url() está definido corretamente em seu código PHP
-    var myUrl = baseUrl + 'empresa/ativa/' + id;
-    if (confirm("Deseja realmente ativar essa empresa?")) {
+function goConfig(id) {
+    Swal.fire({
+    title: "Deseja Abrir as configurações do quarto?",
+    text: "Essa ação tera impacto na tela de visitante",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sim, Abrir!"
+    }).then((result) => {
+    if (result.isConfirmed) {
+        var baseUrl = '<?php echo base_url(); ?>'; // Certifique-se de que base_url() está definido corretamente em seu código PHP
+        var myUrl = baseUrl + 'quarto/config_quarto/' + id;
         window.location.href = myUrl;
-    } else {
-        return false;
     }
+    });
 }
+
+function goAtiva(id) {
+    $.ajax({
+        url: "<?php echo site_url('quarto/valida_ativacao/');?>" + id,
+        type: 'GET',
+        dataType: 'json',
+        data: { id: id }, 
+        success: function(data) {
+            console.log(data); // Para diagnóstico
+            if (data.length === 0) {
+                // Trata o caso quando não há dados retornados
+                Swal.fire({
+                title: "Oops...",
+                text: "Parece que esse quarto está sem as configurações avançadas, por favor verifique",
+                icon: "warning"
+                });
+            } else {
+                $.each(data, function(key, item) {
+                    Swal.fire({
+                    title: "Deseja Ativar esse quarto",
+                    text: "",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sim, Ativar!"
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        var baseUrl = '<?php echo base_url(); ?>'; // Certifique-se de que base_url() está definido corretamente em seu código PHP
+                        var myUrl = baseUrl + 'empresa/editar/' + id;
+                        window.location.href = myUrl;
+                    }
+                    });
+                });
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Erro ao processar a requisição:', error);
+        }
+    });
+}
+
+
+    
 
 function Inativado() {
     Swal.fire({

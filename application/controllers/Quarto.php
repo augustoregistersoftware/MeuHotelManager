@@ -87,9 +87,62 @@ class Quarto extends CI_Controller {
 		}
 	}
 
+	public function inserte_config()
+	{
+		$data_foto["obs_1"] = $_POST['obs1'];
+		$data_foto['caminho'] = $_FILES['file']['name'];
+		$data_foto["obs_2"] =  $_POST['obs2'];
+		$data_foto["obs_3"] =  $_POST['obs3'];
+		$data_foto["id_quarto"] =  $_POST['quarto'];
+		
+		if(isset($_FILES["file"]) && !empty($_FILES["file"])){
+			move_uploaded_file($_FILES['file']['tmp_name'], 'imagens/' .$_FILES['file']['name']);
+			$this->quarto_model->inserte_config($data_foto);
+			redirect("quarto/lista_foto");
+		}else{
+			echo"<p style='color: #f00;'>Erro/p>";
+		}
+	}
+
+	public function config_quarto($id)
+	{
+		if($this->session->userdata('log')!="logged"){
+			redirect("login");
+		}else{
+			$data['config'] = $this->quarto_model->valida_ativacao($id);
+			$data['config_quarto'] = $this->quarto_model->config_quarto($id);
+
+			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/sidebarsettings');
+			$this->load->view('pages/config_quarto',$data);
+			$this->load->view('templates/footer');
+		}
+	}
+
+	public function new_config()
+	{
+		if($this->session->userdata('log')!="logged"){
+			redirect("login");
+		}else{
+			$data['config_quarto'] = $this->quarto_model->quartos();
+
+			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/sidebarsettings');
+			$this->load->view('pages/cadastro_config_quarto',$data);
+			$this->load->view('templates/footer');
+		}
+	}
+
 	public function obter_dados() {
 		$idDoQuarto = $this->input->get('idDoQuarto');
         $dados = $this->quarto_model->obter_dados($idDoQuarto);
+        echo json_encode($dados);
+    }
+
+	public function valida_ativacao($id) {
+        $dados = $this->quarto_model->valida_ativacao($id);
         echo json_encode($dados);
     }
 

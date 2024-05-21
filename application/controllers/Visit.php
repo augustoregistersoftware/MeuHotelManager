@@ -13,7 +13,7 @@ class Visit extends CI_Controller {
 
 	public function index()
 	{
-		$data['quartos'] = $this->quarto_model->quartos();
+		$data['quartos'] = $this->quarto_model->quartos_visit();
         $this->load->view('pages/index',$data);
 	}
 

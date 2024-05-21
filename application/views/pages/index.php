@@ -155,19 +155,22 @@
                 <?php foreach($quartos as $quartos) : ?> 
                 <article class = "room">
                     <div class = "room-image">
-                        <img src = "/meuHotel/imagens/img1.jpg" alt = "room image">
+                        <img src = "/meuHotel/imagens/<?= $quartos['caminho'] ?>" alt = "room image">
                     </div>
                     <div class = "room-text">
                         <h3><?= $quartos['nome'] ?></h3>
                         <ul>
                             <li>
-                                
+                            <i class = "fas fa-arrow-alt-circle-right"></i>
+                            <?= $quartos['obs_1'] ?>
                             </li>
                             <li>
-                                
+                            <i class = "fas fa-arrow-alt-circle-right"></i>
+                            <?= $quartos['obs_2'] ?>
                             </li>
                             <li>
-                              
+                            <i class = "fas fa-arrow-alt-circle-right"></i>
+                            <?= $quartos['obs_3'] ?>
                             </li>
                         </ul>
                         <p><?= $quartos['descricao'] ?></p>
