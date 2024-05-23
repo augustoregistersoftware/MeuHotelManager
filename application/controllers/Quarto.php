@@ -135,6 +135,12 @@ class Quarto extends CI_Controller {
 		}
 	}
 
+	public function busca_imagem_visit($id) {
+        $data['images'] = $this->quarto_model->get_images_by_id($id);
+        echo json_encode($data);
+    }
+
+
 	public function obter_dados() {
 		$idDoQuarto = $this->input->get('idDoQuarto');
         $dados = $this->quarto_model->obter_dados($idDoQuarto);

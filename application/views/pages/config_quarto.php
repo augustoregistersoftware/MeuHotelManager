@@ -34,7 +34,9 @@
                     <td><?= $config['obs_2']?></td>
                     <td><?= $config['obs_3']?></td>
                     <td> 
-                        <a title="Excluir Config" href="javascript:goEdit(<?= $config['id_quarto']?>)" class="btn btn-warning btn-sm btn-info"><i class="fa-solid fa-pencil"></i></a>
+                        <a title="Excluir Config" href="javascript:goEdit(<?= $config['id_quarto']?>)" class="btn btn-warning btn-sm btn-info"><i class="fa-solid fa-xmark"></i></a>
+                        <a title="Abrir Foto" href="#" class="btn btn-info btn-sm btn-info abrir-foto" data-toggle="modal" data-target="#modalFoto" data-caminho="\meuHotel\imagens\<?= $config['caminho'] ?>"><i class="fa-solid fa-camera"></i></a>
+
                 </tr>
                 <?php endforeach;?>
             </tbody>
@@ -53,6 +55,23 @@
     
 </main>
 
+
+<div class="modal fade" id="modalFoto" tabindex="-1" role="dialog" aria-labelledby="modalFotoLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalFotoLabel">Foto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="" class="img-fluid" id="fotoExibida">
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 function goEdit(id) {
     var baseUrl = '<?php echo base_url(); ?>'; // Certifique-se de que base_url() está definido corretamente em seu código PHP
@@ -64,5 +83,14 @@ function goEdit(id) {
     }
 }
 
+$(document).ready(function() {
+    // Ao clicar no link
+    $('.abrir-foto').click(function() {
+      // Obter o caminho da foto do atributo data-caminho
+      var caminhoFoto = $(this).data('caminho');
+      // Definir o src da imagem dentro da modal
+      $('#fotoExibida').attr('src', caminhoFoto);
+    });
+  });
 
 </script>

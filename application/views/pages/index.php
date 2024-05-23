@@ -9,6 +9,20 @@
         <link rel = "icon" href = "/meuHotel/imagens/logo.png" type = "image/png">
     </head>
     <body>
+
+    
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <div class="carousel">
+                <div class="carousel-inner" id="carouselInner">
+                    <!-- Images will be loaded here dynamically -->
+                </div>
+                <button class="carousel-control prev" onclick="prevSlide()">&#10094;</button>
+                <button class="carousel-control next" onclick="nextSlide()">&#10095;</button>
+            </div>
+        </div>
+    </div>
         
         <!-- header -->
         <header class = "header" id = "header">
@@ -24,7 +38,7 @@
             <div class = "head-bottom flex">
                 <h2>Meu Hotel Boituva</h2>
                 <p>O Meu Hotel agora é seu também! Localizado no KM 114 da Rodovia Castelo Branco, na cidade de Boituva-SP, o mais novo hotel da região chegou para oferecer aos hóspedes mais exigentes todo o conforto em um ambiente que mistura o moderno ao contemporâneo. Esperamos recebê-lo em breve aqui no Meu Hotel Boituva! </p>
-                <button type = "button" class = "head-btn">GET STARTED</button>
+                <a type = "button" href="login/auto_load" class = "head-btn">GET STARTED</a>
             </div>
         </header>
         <!-- end of header -->
@@ -177,7 +191,7 @@
                         <p class = "rate">
                             <span>R$<?= number_format($quartos['preco'],2, ",", ".") ?> /</span> Per Night
                         </p>
-                        <button type = "button" class = "btn">book now</button>
+                        <button type="button" class="btn" onclick="openModal(<?= $quartos['id_quarto'] ?>)">Book Now</button>
                     </div>
                 </article>
             <?php endforeach;?> 
@@ -288,7 +302,7 @@
             const navBtn = document.getElementById('nav-btn');
             const cancelBtn = document.getElementById('cancel-btn');
             const sideNav = document.getElementById('sidenav');
-            const modal = document.getElementById('modal');
+            const modal2 = document.getElementById('modal');
 
             navBtn.addEventListener("click", function(){
                 sideNav.classList.add('show');
@@ -306,6 +320,159 @@
                     modal.classList.remove('showModal');
                 }
             });
+
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                const slides = document.querySelectorAll('.carousel-item');
+                if (index >= slides.length) {
+                    currentSlide = 0;
+                } else if (index < 0) {
+                    currentSlide = slides.length - 1;
+                } else {
+                    currentSlide = index;
+                }
+
+                slides.forEach((slide, i) => {
+                    slide.style.transform = `translateX(${-currentSlide * 100}%)`;
+                });
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                showSlide(currentSlide);
+            });
+
+            // Modal controls
+            const modal = document.getElementById("myModal");
+            const closeModalBtn = document.getElementById("closeModalBtn");
+
+            function openModal(id) {
+                // Fetch images from server
+                fetch(`<?php echo base_url('quarto/busca_imagem_visit/'); ?>${id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const carouselInner = document.getElementById('carouselInner');
+                        carouselInner.innerHTML = '';
+
+                        data.images.forEach((image, index) => {
+                            const div = document.createElement('div');
+                            div.className = `carousel-item ${index === 0 ? 'active' : ''}`;
+                            const img = document.createElement('img');
+                            img.src = `/meuHotel/imagens/${image.caminho}`;
+                            img.alt = `Image ${index + 1}`;
+                            div.appendChild(img);
+                            carouselInner.appendChild(div);
+                        });
+
+                        showSlide(currentSlide);
+                        modal.style.display = "flex";
+                    });
+            }
+
+            closeModalBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
         </script>
     </body>
 </html>
+
+<style>
+
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 800px;
+        border-radius: 10px;
+        position: relative;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .carousel {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+
+    .carousel-item {
+        min-width: 100%;
+        transition: opacity 0.5s ease;
+    }
+
+    .carousel-item img {
+        width: 100%;
+        display: block;
+        border-radius: 10px;
+    }
+
+    .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .carousel-control.prev {
+        left: 10px;
+    }
+
+    .carousel-control.next {
+        right: 10px;
+    }
+</style>

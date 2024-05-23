@@ -51,6 +51,11 @@ class Login extends CI_Controller {
         $this->load->view('pages/recuperar_senha');
 	}
 
+	public function auto_load()
+	{
+        $this->load->view('pages/autocadastro');
+	}
+
 	public function esqueceu_senha()
 	{
 		#$apelido = $_POST['username'];

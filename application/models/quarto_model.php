@@ -50,6 +50,14 @@ class Quarto_model extends CI_Model {
         WHERE id_quarto = '.$this->db->escape($id).'')->result_array();
     }
 
+    public function get_images_by_id($id) {
+        $this->db->select('caminho');
+        $this->db->from('foto_quarto');
+        $this->db->where('id_quarto', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 
     public function valida_ativacao($id)
     {
