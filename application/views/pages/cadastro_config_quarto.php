@@ -46,7 +46,7 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<button type="submit" class="btn btn-success btn-xs"><i class="fas fa-check"></i> Save</button>
-							<a href="<?= base_url() ?>quarto" class="btn btn-danger btn-xs"><i class="fas fa-times"></i> Cancel</a>
+							<a href="<?= base_url() ?>quarto/cadastro" class="btn btn-danger btn-xs"><i class="fas fa-times"></i> Cancel</a>
 						</div>			
 					</div>
 				</form>

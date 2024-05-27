@@ -87,6 +87,18 @@ class Quarto extends CI_Controller {
 		}
 	}
 
+	public function inserte_quarto()
+	{
+		$data_foto["nome"] =  $this->input->post('nome');
+		$data_foto["descricao"] =  $this->input->post('descricao');
+		$data_foto["qtde_adulto"] =  $this->input->post('qtde_adulto');
+		$data_foto["qtde_crianca"] =  $this->input->post('qtde_crianca');
+		$data_foto["preco"] =  $this->input->post('preco');
+		$data_foto["status"] =  'F';
+		$this->quarto_model->inserte_quarto($data_foto);
+		redirect("quarto/cadastro?aviso=insert");
+	}
+
 	public function inserte_config()
 	{
 		$data_foto["obs_1"] = $_POST['obs1'];
@@ -134,6 +146,30 @@ class Quarto extends CI_Controller {
 			$this->load->view('templates/footer');
 		}
 	}
+
+	public function new_quarto()
+	{
+		if($this->session->userdata('log')!="logged"){
+			redirect("login");
+		}else{
+
+			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/sidebarsettings');
+			$this->load->view('pages/cadastro_quarto');
+			$this->load->view('templates/footer');
+		}
+	}
+
+	public function ativar($id) {
+        $this->quarto_model->ativar($id);
+        redirect("quarto/cadastro?aviso=ativado");
+    }
+
+	public function inativar($id) {
+        $this->quarto_model->inativar($id);
+        redirect("quarto/cadastro?aviso=inativado");
+    }
 
 	public function busca_imagem_visit($id) {
         $data['images'] = $this->quarto_model->get_images_by_id($id);

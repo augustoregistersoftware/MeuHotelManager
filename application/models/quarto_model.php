@@ -78,9 +78,24 @@ class Quarto_model extends CI_Model {
         $this->db->insert("foto_quarto", $data_foto);
     }
 
+    public function inserte_quarto($data_foto)
+    {
+        $this->db->insert("quarto", $data_foto);
+    }
+
     public function inserte_config($data_foto)
     {
         $this->db->insert("config_quarto", $data_foto);
+    }
+
+    public function ativar($id)
+    {
+        $this->db->query("UPDATE quarto SET status = 'T' WHERE id_quarto = ".$this->db->escape($id)." AND status = 'F'");
+    }
+
+    public function inativar($id)
+    {
+        $this->db->query("UPDATE quarto SET status = 'F' WHERE id_quarto = ".$this->db->escape($id)."");
     }
 
 }

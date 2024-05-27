@@ -9,7 +9,7 @@
     </div>
 
     <div class="table-responsive">
-    <a href="<?= base_url() ?>empresa/new" class="btn btn-sm btn-outline-secondary"><i class="fas fa-plus-square"></i> Quarto</a>
+    <a href="<?= base_url() ?>quarto/new_quarto" class="btn btn-sm btn-outline-secondary"><i class="fas fa-plus-square"></i> Quarto</a>
         <table class="row-border" id="quarto">
             <thead>
                 <tr>
@@ -40,7 +40,7 @@
                     <td> 
                         <a title="Editar Quarto" href="javascript:goEdit(<?= $quartos['id_quarto']?>)" class="btn btn-warning btn-sm btn-info"><i class="fa-solid fa-pencil"></i></a>
                         <?php if($quartos['status'] == 'T') : ?>
-                            <a title="Inativar Quarto" href="javascript:goInativa(<?= $quartos['id_quarto']?>)" class="btn btn-primary btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></a>
+                            <a title="Inativar Quarto" href="javascript:goInativa(<?= $quartos['id_quarto']?>)" class="btn btn-warning btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></a>
                         <?php else :?>
                             <a title="Ativar Quarto" href="javascript:goAtiva(<?= $quartos['id_quarto']?>)" class="btn btn-info btn-sm btn-sucess"><i class="fa-solid fa-check"></i></a>
                         <?php endif ;?>    
@@ -145,7 +145,7 @@ function goAtiva(id) {
                     }).then((result) => {
                     if (result.isConfirmed) {
                         var baseUrl = '<?php echo base_url(); ?>'; // Certifique-se de que base_url() está definido corretamente em seu código PHP
-                        var myUrl = baseUrl + 'empresa/editar/' + id;
+                        var myUrl = baseUrl + 'quarto/ativar/' + id;
                         window.location.href = myUrl;
                     }
                     });
@@ -155,6 +155,24 @@ function goAtiva(id) {
         error: function(xhr, status, error) {
             console.error('Erro ao processar a requisição:', error);
         }
+    });
+}
+
+function goInativa(id) {
+    Swal.fire({
+    title: "Você deseja Inativar o quarto?",
+    text: "",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sim, Inativa"
+    }).then((result) => {
+    if (result.isConfirmed) {
+        var baseUrl = '<?php echo base_url(); ?>'; // Certifique-se de que base_url() está definido corretamente em seu código PHP
+        var myUrl = baseUrl + 'quarto/inativar/' + id;
+        window.location.href = myUrl;
+    }
     });
 }
 
@@ -203,5 +221,81 @@ $(document).ready(function(){
         });
     });
 });
+
+function aviso() {
+    Swal.fire({
+    title: "Sucesso!!",
+    text: "Quarto Novo Cadastrado, Para libera-lo cadastre as configurções",
+    icon: "success"
+    });
+        
+        // Limpa o parâmetro 'aviso' da URL
+        limparParametroURL('aviso');
+    }
+
+function aviso2() {
+    Swal.fire({
+    title: "Sucesso!!",
+    text: "Quarto Ativado Com Sucesso!",
+    icon: "success"
+    });
+        
+        // Limpa o parâmetro 'aviso' da URL
+        limparParametroURL('aviso');
+    }
+
+function aviso3() {
+    Swal.fire({
+    title: "Sucesso!!",
+    text: "Quarto Inativado Com Sucesso!",
+    icon: "success"
+    });
+        
+        // Limpa o parâmetro 'aviso' da URL
+        limparParametroURL('aviso');
+    }
+
+    // Função para limpar um parâmetro da URL
+    function limparParametroURL(nomeParametro) {
+        if (history.replaceState) {
+            // Obtém a URL atual sem os parâmetros de consulta
+            const novaURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
+
+            // Substitui a URL atual sem o parâmetro especificado
+            history.replaceState({}, document.title, novaURL);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Verifica se o parâmetro 'aviso' está presente na URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const avisoParam = urlParams.get('aviso');
+
+        // Se o parâmetro 'aviso' for 'sucesso', exibe a modal
+        if (avisoParam === 'insert') {
+            aviso();
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Verifica se o parâmetro 'aviso' está presente na URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const avisoParam = urlParams.get('aviso');
+
+        // Se o parâmetro 'aviso' for 'sucesso', exibe a modal
+        if (avisoParam === 'inativado') {
+            aviso3();
+        }
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+        // Verifica se o parâmetro 'aviso' está presente na URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const avisoParam = urlParams.get('aviso');
+
+        // Se o parâmetro 'aviso' for 'sucesso', exibe a modal
+        if (avisoParam === 'ativado') {
+            aviso2();
+        }
+    });
 
 </script>
