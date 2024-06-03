@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Dashboard</title>
     <style>
         body {
@@ -170,6 +171,7 @@
                         <th>Data De Saida</th>
                         <th>Status</th>
                         <th>Total</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -201,6 +203,15 @@
                             <td><span class="badge badge-pill pull-right" style="background-color: #ff0500; color: #fff; padding: 8px 10px; margin-top: 5px;">Cancelado</span></td>
                         <?php endif ; ?>
                         <td><?= $checkin['total_final']?></td>
+                        <td> 
+                        <a title="Editar Checkin" href="javascript:goEdit(<?= $checkin['id_checkin']?>)" class="btn btn-warning btn-sm btn-info"><i class="fa-solid fa-pencil"></i></a>
+                        <?php if($checkin['status'] == 'TT') : ?>
+                            <a title="Cancelar Reserva" href="javascript:goInativa(<?= $checkin['id_checkin']?>)" class="btn btn-warning btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></a>
+                            <a title="Confirmar Reserva" href="javascript:goInativa(<?= $checkin['id_checkin']?>)" class="btn btn-warning btn-sm btn-success"><i class="fa-solid fa-check"></i></a>
+                        <?php else :?>
+                            <a title="Ativar Quarto" href="javascript:goAtiva(<?= $checkin['id_checkin']?>)" class="btn btn-info btn-sm btn-sucess"><i class="fa-solid fa-check"></i></a>
+                        <?php endif ;?>    
+                        <a title="Config Avançada Quarto" href="javascript:goConfig(<?= $checkin['id_checkin']?>)" class="btn btn-warning btn-sm btn-info"><i class="fa-solid fa-gear"></i></a>
                     </tr>
                     <?php endforeach;?>
                 </tbody>
