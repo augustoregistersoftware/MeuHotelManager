@@ -8,7 +8,7 @@ class Checkin extends CI_Controller {
     public function __construct()
     {
 		parent::__construct();
-        #$this->load->model("quarto_model");
+		$this->load->model("checkin_model");
         
     }
 
@@ -17,13 +17,19 @@ class Checkin extends CI_Controller {
         if($this->session->userdata('log')!="logged"){
 			redirect("login");
 		}else{
-            #$data['quartos'] = $this->quarto_model->quartos();
+
+			$data_atual = date("Y-m-d"); 
+			$timestamp = strtotime($data_atual);
+			$data_formatada = date("d/m/Y", $timestamp);
+
+			$data['data_formatada'] = $data_formatada;
+			$data['checkin'] = $this->checkin_model->select_checkin();
 
 			$this->load->view('templates/header');
 			$this->load->view('templates/navbar');
 			$this->load->view('templates/sidebarsettings');
-			$this->load->view('pages/checkin');
-			$this->load->view('templates/footer');
+			$this->load->view('pages/checkin',$data);
+			$this->load->view('templates/footer_old');
 		}
 	}
 
